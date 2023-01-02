@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+:root {
+  --bg-color: hsl(240, 38.1%, 77.8%);
+  --dark: hsl(240, 38.1%, 27.8%);
+  --opposite: white;
+  --highlight: hsl(60,70%,30%);
+  --button-hue: 0;
+  --transition-time: 0.5s;
+}
+@media (prefers-reduced-motion) {
+  :root {
+    --transition-time: 0s;
+  }
+}
+
+html {
+  font-size: 1.8vh;
+}
+
+@media  (orientation: portrait) {
+  html {
+    font-size: 1.6vh;
+  }
+}
+
+
+body {
+  display: grid;
+  min-height: 100vh;
+  align-items: center;
+  justify-items: center;
+  background-color: var(--bg-color);
+  background-image: url('gingham.svg');
+  margin: 0;
+  padding: 0;
+}
+p, label {
+  background: var(--opposite);
+  padding: 1rem;
+  margin: 1rem 1rem;
+  border-radius: 0.5em;
+  border: 0.2rem solid var(--bg-color);
+  font-size: 1.5rem;
+}
+
+p:empty {
+  visibility: hidden;
+}
+
+body > div {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+}
+
+body * {
+  font-family: Delius;
+}
+#build-error {
+  font-family: monospace; 
+}
+
+label {
+  text-align: center;
+  font-weight: bold;
+  display: grid;
+  align-items: baseline;
+  justify-items: center;
+  margin: 1em;
+}
+label input {
+  width: 8em;
+  text-align: center;
+  font-size: 1em;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+  
+#grid-bg {
+  fill: var(--dark);
+}
+
+button {
+  font-size: 1.2em;
+  padding: 1em;
+  margin: 1em;
+  background: hsl(var(--button-hue),50%,70%);
+  border: 0.2em solid hsl(var(--button-hue), 50%, 50%);
+  border-radius: 0.5em;
+  transition: opacity var(--transition-time);
+}
+
+button:disabled {
+  opacity: 0;
+}
+
+svg {
+  max-height: 40vh;
+}
+
+.cell rect {
+  fill: var(--opposite);
+  transition: fill var(--transition-time);
+}
+.cell text {
+  transition: font-weight var(--transition-time);
+}
+.cell.highlight rect {
+  fill: var(--highlight);
+}
+.cell.highlight text {
+  fill: var(--opposite);
+}
+#explanation {
+  /*! font-size: 1.5rem; */
+  line-height: 1em;
+  min-height: 1em;
+}
+#equation {
+  font-size: 2rem;
+  margin: 1rem 0;
+  min-height: 1em;
+  line-height: 1em;
+}
+
+
+p#magic-number {
+  font-size: 10vh;
+  padding: 1rem 0.5em;
+}
+
+footer {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  background: var(--bg-color);
+  padding: 1em;
+  border-radius: 0.5em;
+}
+footer a {
+    color: inherit;
+}
+footer a:focus, footer a:hover {
+    background: var(--highlight);
+    color: var(--opposite);
+}
+
+
+.big-emoji {
+  font-size: 15vmin;
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  text-align: center;
+  animation: wobble calc(1*var(--transition-time)) infinite alternate-reverse ease-in-out;
+  text-shadow: 0 0 0.1em black;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+}
+@keyframes wobble-right {
+  0% {
+    transform: scaleX(-1) rotate(15deg);
+  }
+  to {
+    transform: scaleX(-1) rotate(-15deg);
+  }
+}
+
+#emoji-left {
+  left: 5vw;
+}
+#emoji-right {
+  right: 5vw;
+  animation-name: wobble-right;
+}
+@media (orientation:portrait) {
+  .big-emoji {
+    font-size: 15vmin;
+  }
+  #emoji-left {
+    left: 5vw;
+    top: 3vh;
+  }
+  #emoji-right {
+    right: 5vw;
+    top: 3vh;
+  }
+}
